@@ -27,8 +27,15 @@
 		} catch(Exception e){
 			out.println("DB 연결 실패!!");
 			e.printStackTrace(); // 에러발생시 에러의 내용을 콘솔창에 출력
-		}
-		
-	%>
+		} finally { // db 에러의 발생여부와 상관없이 무조건 실행
+			try{
+				if(conn != null){ // connection 의 null 이 아닐때만 close 실행
+					conn.close();
+				}
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}		
+	%> 
 </body>
 </html>
